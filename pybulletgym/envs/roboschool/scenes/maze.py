@@ -13,7 +13,7 @@ import pybullet
 class MazeScene(Scene):
   multiplayer = False
   mazeLoaded = 0
-
+  maze_name = "maze0.sdf"
 
   def episode_restart(self, bullet_client):
     self._p = bullet_client
@@ -27,10 +27,8 @@ class MazeScene(Scene):
 
       filename = os.path.join(os.path.dirname(__file__), "..", "..", "assets", "scenes", "maze", "maze_plane.sdf")
       self.ground_plane_mjcf=self._p.loadSDF(filename)
-      filename = os.path.join(os.path.dirname(__file__), "..", "..", "assets", "scenes", "maze", "maze1.sdf")
+      filename = os.path.join(os.path.dirname(__file__), "..", "..", "assets", "scenes", "maze", self.maze_name)
       self.walls=self._p.loadSDF(filename)
-
-
 
       for i in self.ground_plane_mjcf:
         self._p.changeDynamics(i,-1,lateralFriction=0.8, restitution=0.5)
@@ -40,3 +38,7 @@ class MazeScene(Scene):
     #	for j in range(pybullet.getNumJoints(i)):
     #		self._p.changeDynamics(i,j,lateralFriction=0)
     #despite the name (stadium_no_collision), it DID have collision, so don't add duplicate ground
+
+# Identical to the other. Just changes the loaded maze
+class MazeHardScene(MazeScene):
+  maze_name = 'maze1.sdf'

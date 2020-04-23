@@ -70,7 +70,7 @@ class BaseBulletEnv(gym.Env):
 		self.potential = self.robot.calc_potential()
 		return s
 
-	def _render(self, mode, close=False, top_bottom=False):
+	def _render(self, mode, close=False):
 		if mode == "human":
 			self.isRender = True
 		if mode != "rgb_array":
@@ -80,13 +80,6 @@ class BaseBulletEnv(gym.Env):
 		if hasattr(self,'robot'):
 			if hasattr(self.robot,'body_xyz'):
 				base_pos = self.robot.body_xyz
-
-		if top_bottom:
-			base_pos = [0, 0, 0]
-			self._cam_dist = 8
-			self._cam_pitch = -90
-			self._render_width = 300
-			self._render_height = 300
 
 		view_matrix = self._p.computeViewMatrixFromYawPitchRoll(
 			cameraTargetPosition=base_pos,

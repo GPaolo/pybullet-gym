@@ -1,0 +1,149 @@
+<sdf version='1.6'>
+	<world name='default'>
+	<gravity>0 0 -9.8</gravity>
+	  <model name='wall_1'>
+<inertial>
+      <mass value="0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+	    <static>1</static>
+	    <pose frame=''>1 -2 0.5 0 0 0</pose>
+	    <link name='wall'>
+		  <collision name="collision">
+            <geometry>
+              <box>
+                <size>6 0.5 1</size>
+              </box>
+            </geometry>
+          </collision>
+        </link>
+	  </model>
+
+	  <model name='wall_2'>
+<inertial>
+      <mass value="0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+	    <static>1</static>
+	    <pose frame=''>-1.75 4 0.5 0 0 0</pose>
+	    <link name='wall'>
+		  <collision name="collision">
+            <geometry>
+              <box>
+                <size>0.5 12 1</size>
+              </box>
+            </geometry>
+          </collision>
+        </link>
+	  </model>
+
+	  <model name='wall_3'>
+<inertial>
+      <mass value="0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+	    <static>1</static>
+	    <pose frame=''>6 10 0.5 0 0 0</pose>
+	    <link name='wall'>
+		  <collision name="collision">
+            <geometry>
+              <box>
+                <size>16 0.5 1</size>
+              </box>
+            </geometry>
+          </collision>
+        </link>
+	  </model>
+
+	  <model name='wall_4'>
+<inertial>
+      <mass value="0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+	    <static>1</static>
+	    <pose frame=''>13.75 4 0.5 0 0 0</pose>
+	    <link name='wall'>
+		  <collision name="collision">
+            <geometry>
+              <box>
+                <size>0.5 12 1</size>
+              </box>
+            </geometry>
+          </collision>
+        </link>
+	  </model>
+
+	  <model name='wall_5'>
+<inertial>
+      <mass value="0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+	    <static>1</static>
+	    <pose frame=''>3.75 1 0.5 0 0 0</pose>
+	    <link name='wall'>
+		  <collision name="collision">
+            <geometry>
+              <box>
+                <size>0.5 6 1</size>
+              </box>
+            </geometry>
+          </collision>
+        </link>
+	  </model>
+
+	  <model name='wall_6'>
+<inertial>
+      <mass value="0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+	    <static>1</static>
+	    <pose frame=''>11 -2 0.5 0 0 0</pose>
+	    <link name='wall'>
+		  <collision name="collision">
+            <geometry>
+              <box>
+                <size>6 0.5 1</size>
+              </box>
+            </geometry>
+          </collision>
+        </link>
+	  </model>
+
+	  <model name='wall_7'>
+<inertial>
+      <mass value="0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+	    <static>1</static>
+	    <pose frame=''>8.25 1 0.5 0 0 0</pose>
+	    <link name='wall'>
+		  <collision name="collision">
+            <geometry>
+              <box>
+                <size>0.5 6 1</size>
+              </box>
+            </geometry>
+          </collision>
+        </link>
+	  </model>
+
+	  <model name='wall_8'>
+<inertial>
+      <mass value="0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+	    <static>1</static>
+	    <pose frame=''>6 4 0.5 0 0 0</pose>
+	    <link name='wall'>
+		  <collision name="collision">
+            <geometry>
+              <box>
+                <size>5 0.5 1</size>
+              </box>
+            </geometry>
+          </collision>
+        </link>
+	  </model>
+
+	</world>
+</sdf>

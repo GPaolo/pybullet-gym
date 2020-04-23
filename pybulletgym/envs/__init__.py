@@ -149,6 +149,13 @@ register(
 )
 
 register(
+	id='AntMuJoCoMazeHardEnv-v0',
+	entry_point='pybulletgym.envs.mujoco.envs.locomotion.ant_env:AntMuJoCoMazeHardEnv',
+	max_episode_steps=1000,
+	reward_threshold=10000.
+)
+
+register(
 	id='HopperMuJoCoEnv-v0',
 	entry_point='pybulletgym.envs.mujoco.envs.locomotion.hopper_env:HopperMuJoCoEnv',
 	max_episode_steps=1000,
