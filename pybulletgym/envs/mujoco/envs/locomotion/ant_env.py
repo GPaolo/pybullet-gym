@@ -36,6 +36,62 @@ class AntMuJoCoMazeEnv(WalkerBaseMuJoCoEnv):
     def _alive_bonus(self, z, pitch):
         return +1# if z > 0.26 else -1  # 0.25 is central sphere rad, die if it scrapes the ground
 
+    def step(self, a):
+        if not self.scene.multiplayer:  # if multiplayer, action first applied to all robots, then global step() called, then _step() for all robots with the same actions
+            self.robot.apply_action(a)
+            self.scene.global_step()
+
+        state = self.robot.calc_state()[:29]  # This ones removes all the zeros that are attached at the end for no apparent reason
+        state[27:] = self.robot.body_xyz[:2] # Use the last two zeros of the state to put the XY position of the robot.
+
+        alive = float(self.robot.alive_bonus(state[0]+self.robot.initial_z, self.robot.body_rpy[1]))   # state[0] is body height above ground, body_rpy[1] is pitch
+        done = alive < 0
+        if not np.isfinite(state).all():
+            print("~INF~", state)
+            done = True
+
+        potential_old = self.potential
+        self.potential = self.robot.calc_potential()
+        progress = float(self.potential - potential_old)
+
+        feet_collision_cost = 0.0
+        for i,f in enumerate(self.robot.feet):  # TODO: Maybe calculating feet contacts could be done within the robot code
+            contact_ids = set((x[2], x[4]) for x in f.contact_list())
+            if self.ground_ids & contact_ids:
+                # see Issue 63: https://github.com/openai/roboschool/issues/63
+                # feet_collision_cost += self.foot_collision_cost
+                self.robot.feet_contact[i] = 1.0
+            else:
+                self.robot.feet_contact[i] = 0.0
+
+        joints_at_limit_cost = float(self.joints_at_limit_cost * self.robot.joints_at_limit)
+        debugmode = 0
+        if debugmode:
+            print("alive=")
+            print(alive)
+            print("progress")
+            print(progress)
+            print("joints_at_limit_cost")
+            print(joints_at_limit_cost)
+            print("feet_collision_cost")
+            print(feet_collision_cost)
+
+        self.rewards = [
+            alive,
+            progress,
+            joints_at_limit_cost,
+            feet_collision_cost
+        ]
+        if debugmode:
+            print("rewards=")
+            print(self.rewards)
+            print("sum rewards")
+            print(sum(self.rewards))
+        self.HUD(state, a, done)
+        self.reward += sum(self.rewards)
+
+        return state, sum(self.rewards), bool(done), {}
+
     def create_single_player_scene(self, bullet_client):
         scene = MazeScene(bullet_client, gravity=9.8, timestep=0.0165/4, frame_skip=4)
         return scene
