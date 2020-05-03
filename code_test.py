@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 env = gym.make('AntMuJoCoMazeEnv-v0')
 
 env.render()
-env.reset()
+r = env.reset()
 
 for i in range(2000):
   a = env.step(env.action_space.sample())
