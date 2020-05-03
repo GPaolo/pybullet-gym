@@ -100,7 +100,8 @@ class AntMuJoCoMazeEnv(WalkerBaseMuJoCoEnv):
         if self.stateId >= 0:
             self._p.restoreState(self.stateId)
 
-        r = BaseBulletEnv._reset(self)
+        r = BaseBulletEnv._reset(self)[:27]
+        r[27:] = self.robot.body_xyz[:2]
         self._p.configureDebugVisualizer(p.COV_ENABLE_RENDERING,0)
 
         self.parts, self.jdict, self.ordered_joints, self.robot_body = self.robot.addToScene(self._p,
