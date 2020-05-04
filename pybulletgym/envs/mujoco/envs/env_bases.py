@@ -1,7 +1,10 @@
 import gym, gym.spaces, gym.utils, gym.utils.seeding
 import numpy as np
 import pybullet
-from pybullet_envs.bullet import bullet_client
+try:
+	from pybullet_envs.bullet import bullet_client
+except:
+	from pybullet_utils import bullet_client
 
 from pkg_resources import parse_version
 
