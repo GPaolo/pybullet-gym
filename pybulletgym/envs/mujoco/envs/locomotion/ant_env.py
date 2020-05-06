@@ -114,7 +114,7 @@ class AntMuJoCoMazeEnv(WalkerBaseMuJoCoEnv):
 
         for i in self.robot_body.bodies:
             for link in range(-1, 20): #Changes the color of the robot Ant
-                p.changeVisualShape(i, link, rgbaColor=[0.2, 0.3, 0.4, 1])
+                p.changeVisualShape(i, link, rgbaColor=[1, 0, 0, 1])
 
         return r
 
@@ -158,10 +158,10 @@ class AntMuJoCoMazeEnv(WalkerBaseMuJoCoEnv):
         )
         rgb_array = np.array(px)
         rgb_array = rgb_array[:, :, :3]
-        if rgb_array.dtype is np.uint8:
-            rgb_array = 255 - rgb_array
-        else:
-            rgb_array = 1 - rgb_array
+        if rgb_array.dtype == np.uint8:
+            rgb_array = rgb_array/255
+        # else:
+        #     rgb_array = 1 - rgb_array
         return rgb_array
 
 

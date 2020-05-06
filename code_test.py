@@ -5,17 +5,17 @@ import gym
 import pybullet
 import pybulletgym
 import matplotlib.pyplot as plt
-
+from skimage.color import rgb2hsv
 env = gym.make('AntMuJoCoMazeEnv-v0')
 
-env.render()
+# env.render()
 r = env.reset()
 
-for i in range(2000):
-  a = env.step(env.action_space.sample())
+# for i in range(2000):
+#   a = env.step(env.action_space.sample())
 
 image = env.render(mode='rgb_array')
 plt.figure()
-plt.imshow(image)
+plt.imshow(rgb2hsv(image))
 plt.show()
 
