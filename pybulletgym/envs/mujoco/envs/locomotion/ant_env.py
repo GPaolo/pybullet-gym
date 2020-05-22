@@ -27,8 +27,8 @@ class AntMuJoCoMazeEnv(WalkerBaseMuJoCoEnv):
         :return:
         """
         self.fixed = True
-        self.base_pos = [6, 4, 0]
-        self._cam_dist = 15
+        self.base_pos = [4, 5, 0]
+        self._cam_dist = 13
         self._cam_pitch = -90
         self._render_width = 64
         self._render_height = 64
