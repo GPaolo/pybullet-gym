@@ -26,9 +26,9 @@ class AntMuJoCoMazeEnv(WalkerBaseMuJoCoEnv):
         Sets camera parameter
         :return:
         """
-        self.fixed = True
-        self.base_pos = [4, 5, 0]
-        self._cam_dist = 13
+        self.fixed = False
+        self.base_pos = [6, 4, 0]
+        self._cam_dist = 9
         self._cam_pitch = -90
         self._render_width = 64
         self._render_height = 64
