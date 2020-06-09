@@ -23,16 +23,19 @@ class StadiumScene(Scene):
 			# stadium_pose = cpp_household.Pose()
 			# if self.zero_at_running_strip_start_line:
 			#	 stadium_pose.set_xyz(27, 21, 0)  # see RUN_STARTLINE, RUN_RAD constants
-
 			filename = os.path.join(os.path.dirname(__file__), "..", "assets", "scenes", "stadium", "plane_stadium.sdf")
 			self.ground_plane_mjcf=self._p.loadSDF(filename)
+
+			x = self._p.loadTexture(os.path.join(os.path.dirname(__file__), "..", "assets", "scenes", "stadium", "stadium_grass.jpg"))
+			self._p.changeVisualShape(self.ground_plane_mjcf, -1, textureUniqueId=x)
+
 			#filename = os.path.join(pybullet_data.getDataPath(),"stadium_no_collision.sdf")
 			#self.ground_plane_mjcf = p.loadSDF(filename)
 			#
 			for i in self.ground_plane_mjcf:
 				self._p.changeDynamics(i,-1,lateralFriction=0.8, restitution=0.5)
 				self._p.changeVisualShape(i,-1,rgbaColor=[1,1,1,0.8])
-				self._p.configureDebugVisualizer(pybullet.COV_ENABLE_PLANAR_REFLECTION,1)
+				self._p.configureDebugVisualizer(pybullet.COV_ENABLE_PLANAR_REFLECTION,0)
 
 		#	for j in range(pybullet.getNumJoints(i)):
 		#		self._p.changeDynamics(i,j,lateralFriction=0)

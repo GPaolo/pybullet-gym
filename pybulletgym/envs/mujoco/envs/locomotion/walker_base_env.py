@@ -1,5 +1,5 @@
 from pybulletgym.envs.mujoco.envs.env_bases import BaseBulletEnv
-from pybulletgym.envs.roboschool.scenes import StadiumScene
+from pybulletgym.envs.mujoco.scenes import StadiumScene
 import pybullet as p
 import numpy as np
 
