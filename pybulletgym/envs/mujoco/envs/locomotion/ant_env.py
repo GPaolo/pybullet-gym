@@ -41,8 +41,8 @@ class AntMuJoCoMazeEnv(WalkerBaseMuJoCoEnv):
             self.robot.apply_action(a)
             self.scene.global_step()
 
-        state = self.robot.calc_state()[:29]  # This ones removes all the zeros that are attached at the end for no apparent reason
-        state[27:] = self.robot.body_xyz[:2] # Use the last two zeros of the state to put the XY position of the robot.
+        state = self.robot.calc_state()  # State is still the 111 dimension thing
+        info = {'xy': self.robot.body_xyz[:2]} # The xy pose of the robot is given in the info
 
         alive = float(self.robot.alive_bonus(state[0]+self.robot.initial_z, self.robot.body_rpy[1]))   # state[0] is body height above ground, body_rpy[1] is pitch
         done = alive < 0
@@ -90,7 +90,7 @@ class AntMuJoCoMazeEnv(WalkerBaseMuJoCoEnv):
         self.HUD(state, a, done)
         self.reward += sum(self.rewards)
 
-        return state, sum(self.rewards), bool(done), {}
+        return state, sum(self.rewards), bool(done), info
 
     def create_single_player_scene(self, bullet_client):
         scene = MazeScene(bullet_client, gravity=9.8, timestep=0.0165/4, frame_skip=4)
